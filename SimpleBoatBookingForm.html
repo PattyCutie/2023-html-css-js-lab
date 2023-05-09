@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Yacht Booking Form</title>
+    <style>
+        /*This is inline style*/
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(70, 70, 70);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Indicator */
+        .form-header {
+            position: absolute;
+            z-index: 90;
+            top: 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: rgb(2, 2, 2) 1px 0 10px;
+
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+        }
+
+        .step-indicator span {
+            text-align: center;
+            color: rgb(142, 142, 142);
+            width: 30px;
+            height: 30px;
+            padding: 10px;
+            margin: 0 5px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(2.5px);
+            -webkit-backdrop-filter: blur(2.5px);
+            border-radius: 10px;
+        }
+
+        .step-indicator span.active {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom: 2px solid rgba(85, 85, 85, 0.4);
+            border-right: 2px solid rgba(85, 85, 85, 0.4);
+        }
+
+        /* Form Step */
+        .form-thankyou {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 400px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(2.5px);
+            -webkit-backdrop-filter: blur(2.5px);
+            border-radius: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+            border-right: 2px solid rgba(255, 255, 255, 0.18);
+
+        }
+
+        .form-body {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 600px;
+            height: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(2.5px);
+            -webkit-backdrop-filter: blur(2.5px);
+            border-radius: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+            border-right: 2px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .form-step {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+
+        }
+
+        .form-step.show {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .form-step h2,
+        h5 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: rgb(51, 51, 51) 1px 0 10px;
+
+        }
+
+        .form-step label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: rgba(255, 255, 255);
+            text-shadow: rgb(51, 51, 51) 1px 0 10px;
+
+        }
+
+        .form-step input[type="text"],
+        .form-step input[type="email"],
+        .form-step input[type="tel"],
+        .form-step textarea,
+        .form-step select {
+            resize: none;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline-style: none;
+
+            &:focus {
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.40);
+            }
+        }
+
+        .form-step input[type="button"] {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.40);
+            padding: 8px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            text-shadow: rgb(2, 2, 2) 1px 0 10px;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .form-step input[type="submit"] {
+            background-color: rgba(23, 185, 31, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.40);
+            padding: 8px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            text-shadow: rgb(2, 2, 2) 1px 0 10px;
+
+            &:hover {
+                background-color: rgba(23, 185, 31, 0.8);
+            }
+        }
+
+
+        /* Background images for each step */
+        #reservation-step {
+            position: absolute;
+            background-image: url('https://images.pexels.com/photos/88212/pexels-photo-88212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #boat-option-step {
+            background-image: url('https://images.pexels.com/photos/3222187/pexels-photo-3222187.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #agreement-step {
+            background-image: url('https://images.pexels.com/photos/5200263/pexels-photo-5200263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #payment-step {
+            background-image: url('https://images.pexels.com/photos/12910680/pexels-photo-12910680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #thankyou {
+            background-image: url('https://images.pexels.com/photos/5046354/pexels-photo-5046354.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Yacht Booking</h1>
+            <div class="step-indicator">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+            </div>
+        </div>
+        <div class="form-step show" id="reservation-step">
+            <div class="form-body">
+                <h2>Reservation Information</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                    <input type="button" value="Next" onclick="showFormStep('boat-option-step')">
+                </form>
+            </div>
+        </div>
+
+        <div class="form-step" id="boat-option-step">
+            <div class="form-body">
+                <h2>Boat Options</h2>
+                <form>
+                    <label for="boat-type">Boat Type:</label>
+                    <select name="boat-type" id="boat-type" required>
+                        <option value="">Select Boat Type</option>
+                        <option value="sailboat">Sailboat</option>
+                        <option value="speedboat">Sailboat</option>
+                        <option value="yacht">yacht</option>
+                    </select>
+                    <label for="number-of-boats">Number of boats:</label>
+                    <input type="number" id="number-of-boats" name="number-of-boats" placeholder="Enter number of boats"
+                        required>
+
+                    <label for="equipment-list">Water Sport Equipment List:</label>
+                    <textarea id="equipment-list" name="equipment-list" rows="6"
+                        placeholder="Enter Water sport equipment list"></textarea>
+
+                    <input type="button" value="Previous" onclick="showFormStep('reservation-step')">
+                    <input type="button" value="next" onclick="showFormStep('agreement-step')">
+                </form>
+            </div>
+        </div>
+
+        <div class="form-step" id="agreement-step">
+            <div class="form-body">
+                <h2>Additional Agreement Terms:</h2>
+                <form>
+                    <label for="agreement">Agreement Terms</label>
+                    <textarea name="agreement" id="" cols="30" rows="10"></textarea>
+                    <input type="checkbox" id="agree-checkbox" required>
+                    <label for="agree-checkbox">I agree to the terms and conditions</label>
+
+                    <input type="button" value="Previous" onclick="showFormStep('boat-option-step')">
+                    <input type="button" value="Next" onclick="showFormStep('payment-step')">
+
+                </form>
+            </div>
+        </div>
+
+        <div class="form-step" id="payment-step">
+            <div class="form-body">
+                <h2>Payment</h2>
+                <form>
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="expiration-date" name="expiration-date" placeholder="Enter expiration date"
+                        required>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+                    <input type="button" value="Previous" onclick="showFormStep('agreement-step')">
+                    <input type="submit" value="Submit" onclick="showFormStep('thankyou')">
+
+                </form>
+            </div>
+        </div>
+
+        <div class="form-step" id="thankyou">
+            <div class="form-thankyou">
+                <h2>THANK YOU FOR THE PAYMENT</h2>
+                <h5>You will recieve confirmation email shortly </h5>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const formSteps = document.querySelectorAll('.form-step')
+        const stepIndicators = document.querySelectorAll('.step-indicator span')
+
+        function showFormStep(stepId) {
+            formSteps.forEach(step => {
+                step.classList.remove('show')
+            })
+
+            stepIndicators.forEach(indicator => {
+                indicator.classList.remove('active')
+            })
+
+            const selectedStep = document.getElementById(stepId)
+            const selectedIndicator = document.querySelector(`.step-indicator span:nth-child(${Array.from(formSteps).indexOf(selectedStep) + 1})`)
+            selectedStep.classList.add('show')
+
+            selectedIndicator.classList.add('active')
+
+        }
+
+    </script>
+</body>
+
+</html>
