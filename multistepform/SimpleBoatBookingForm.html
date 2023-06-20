@@ -14,6 +14,9 @@
         }
 
         body {
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
             position: relative;
             margin: 0;
             padding: 0;
@@ -22,16 +25,18 @@
         }
 
         .container {
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
         }
 
         /* Indicator */
         .form-header {
+            overflow: hidden;
             position: absolute;
             z-index: 90;
             top: 10%;
@@ -52,6 +57,7 @@
         .step-indicator {
             display: flex;
             justify-content: center;
+            /* visibility: hidden; */
         }
 
         .step-indicator span {

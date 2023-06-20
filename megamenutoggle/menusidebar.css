@@ -1,0 +1,387 @@
+/* Google Fonts Import Link */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+:root {
+    --font-size-sm: 10pt;
+    --font-size-md: 11pt;
+    --font-size-lg: 14pt;
+    --font-size-xl: 20pt;
+
+    --icon-size-sm: 12px;
+    --icon-size-md: 16pt;
+    --icon-size-lg: 24pt;
+    --icon-size-xl: 32pt;
+
+    --main-bar: #ff8c00;
+    --main-bar-expand: #FFb400;
+    --submenu-option: #ffcb71;
+    --hover-area: #ffa000;
+    --text-white: #fff;
+    --text-black: #000;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun', sans-serif;
+}
+
+/* Menu Sidebar */
+.main__wrapper {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --------------------------------------------------------- */
+
+.wrapper__menusidebar {
+    position: fixed;
+    z-index: 20;
+    left: 0px;
+    display: flex;
+    width: 40px;
+    height: 100%;
+    transition: all 2s ease;
+    background-color: var(--main-bar-expand);
+}
+
+.wrapper__menusidebar.open {
+    width: 340px;
+}
+
+/*  open/close sidebar area */
+.menusidebar__main {
+    position: fixed;
+    z-index: 20;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 100%;
+    transition: all 2s ease;
+    background-color: var(--main-bar);
+
+}
+
+.mainmenu_toplayer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: 40px;
+    transition: all 2s ease;
+
+}
+
+.wrapper__menusidebar.open .mainmenu_toplayer {
+    width: 340px;
+}
+
+/*Main Logo bar */
+.main__logobar {
+    display: flex;
+    width: 340px;
+    height: 120px;
+}
+
+.logobar__row {
+    display: flex;
+    align-items: start;
+    width: 340px;
+}
+
+.logobar__logo {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 40px;
+    height: 80px;
+    /* background: var(--main-bar); */
+}
+
+.logo__icon {
+    display: flex;
+    align-items: start;
+    /* use padding to move up/down text contaianer around parent*/
+    padding-top: 20px;
+    justify-content: center;
+    width: 40px;
+    height: 60px;
+}
+.logo__icon> i {
+    font-size: var(--icon-size-xl);
+    color: #fff;
+}
+
+.logobar__dsc {
+    display: flex;
+    align-items: start;
+    width: 300px;
+    height: 80px;
+}
+
+.dsc__logodsc {
+    display: flex;
+    align-items: start;
+    /* use padding to move up/down text contaianer around parent*/
+    padding-top: 20px;
+    width: 300px;
+    height: 80px;
+
+    >h2 {
+        /* use padding to move text R-L around parent*/
+        padding-left: 20px;
+        padding-right: auto;
+        display: flex;
+        font-size: var(--font-size-xl);
+        font-weight: 800;
+        margin: 0;
+        color: var(--text-white);
+    }
+}
+
+/* ------------------------------- */
+/* Main menu bar */
+.main__menubar {   
+    display: flex;
+    width: 340px;
+    padding: 40px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* overflow-y: scroll; version 1 for non close arrow the close side bar using Ja v.1*/ 
+}
+
+.wrapper__menusidebar.open .main__menubar::-webkit-scrollbar {
+    display: none;
+}
+
+.menubar__menulists {
+    display: flex;
+    width: 340px;
+}
+.menulist__links {
+    display: flex;
+    flex-direction: column;
+ 
+}
+.link__row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+}
+
+/* icon */
+.row__colicon {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 40px;
+    /* background-color: var(--main-bar); */
+}
+
+.coldsc__top:hover:not(:hover .coldsc__dropbtn) {
+    background-color: var(--hover-area);
+}
+
+.colicon__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    /* use padding to move up/down text contaianer around parent*/
+}
+
+.colicon__icon>i {
+    color: var(--text-white);
+    font-size: var(--icon-size-md);
+}
+
+/* dsc */
+.row__coldsc {
+    display: flex;
+    align-items: start;
+    width: 300px;
+}
+
+.coldsc__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.coldsc__dsc {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+    height: 60px;
+    /* use padding to move up/down text contaianer around parent*/
+
+    >h4 {
+        /* use padding to move text R-L around parent*/
+        padding-left: 20px;
+        padding-right: auto;
+        display: flex;
+        font-size: var(--font-size-lg);
+        font-weight: 800;
+        margin: 0;
+        color: var(--text-black);
+    }
+
+    >p {
+        display: flex;
+        font-size: var(--font-size-md);
+        font-weight: 800;
+        margin: 0;
+        color: var(--text-white);
+    }
+}
+
+/* Drop Btn */
+.coldsc__dropbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 60px;
+    padding: 1px;
+}
+
+.coldsc__dropbtn>i {
+    font-size: var(--icon-size-md);
+    color: #fff;
+}
+
+/*Drop list*/
+.wrapper__menusidebar .coldsc__bottom {
+    display: none;
+    flex-direction: column;
+    padding-left: 40px;
+    height: 0;
+    overflow-y: hidden;
+    
+}
+
+.wrapper__menusidebar.open .coldsc__bottom.showdroplist {
+    display: flex !important;
+    height: auto;
+    
+}
+
+/* Drop menu list*/
+.bottom__dropmenu {
+    display: flex;
+    width: 300px;
+    background-color: var(--submenu-option);
+}
+
+.dropmenu__options {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* link */
+.option__link {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 40px;
+    padding: 20px;
+}
+.option__link:hover {
+    background: var(--hover-area);
+}
+
+.link__submenu {
+    display: flex;
+    gap: 10px;
+}
+
+.link__dropicon>i {
+    font-size: var(--font-size-lg);
+    color: var(--text-black);
+}
+
+.link_droptitle>p {
+    font-size: var(--font-size-sm);
+    color: var(--text-black);
+    margin: 0;
+}
+
+
+/* --------------------------------*/
+/* Main user bar */
+.main__userbar {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 40px;
+    transition: all 2s ease;
+    overflow: hidden;
+    overflow-y: auto;
+    /* overflow-y: scroll; version 1 for non close arrow the close side bar using Ja v.1*/ 
+}
+.wrapper__menusidebar.open .main__userbar::-webkit-scrollbar {
+    display: none;
+}
+.wrapper__menusidebar.open .main__userbar{
+    width: 340px;
+}
+.coldsc__dropbtn>i.userarrow {
+    transform: scaleY(-1);
+}
+
+
+
+/* --------------------------------*/
+/* --------------------------------------------------------- */
+/* toggle button */
+.menusidebar__toggle {
+    position: absolute;
+    z-index: 200;
+    top: 0px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 2s ease;
+    width: 40px;
+}
+
+.wrapper__menusidebar.open .menusidebar__toggle {
+    left: 340px;
+}
+
+.toggle__button>i {
+    color: #FE6E00;
+    font-size: 32px;
+}
+
+/* --------------------------------------------------------- */
+/* --------------------------------------------------------- */
+
+/* Home Section */
+.home-section {
+    overflow: hidden;
+    padding: 60px 80px;
+    background-color: #fde1b1;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/* --------------------------------------------------------- */
+/* Global */
+a:link {
+    text-decoration: none;
+}
